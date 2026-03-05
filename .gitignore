@@ -1,0 +1,13 @@
+node_modules/
+artifacts/
+cache/
+coverage/
+coverage.json
+typechain-types/
+
+# Environment — NEVER commit real keys
+.env
+
+# OS
+.DS_Store
+Thumbs.db
