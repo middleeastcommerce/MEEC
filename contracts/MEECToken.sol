@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity 0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 /**
- * @title MyToken
- * @notice Minimal immutable ERC-20 token.
+ * @title MEECToken
+ * @notice Middle East E-Commerce (MEEC) ERC-20 token.
  *
  * Design goals:
  *  - Pass token security scanners (Token Sniffer, GoPlus, DexScreener, Honeypot.is)
@@ -25,17 +25,14 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
  *  - ERC20Pausable           : no ability to freeze transfers
  *  - Proxy / upgradeable     : contract logic is immutable
  */
-contract MyToken is ERC20, ERC20Burnable, ERC20Permit {
+contract MEECToken is ERC20, ERC20Burnable, ERC20Permit {
 
-    /**
-     * @param recipient    Address that receives the entire initial supply.
-     *                     Typically the deployer wallet.
-     * @param totalSupply_ Total token supply in the smallest unit (wei).
-     *                     Example: 1,000,000 tokens → 1_000_000 * 10**18
-     */
+    /// @notice Deploys the MEEC token and mints the entire supply to `recipient`.
+    /// @param recipient    Address that receives the entire initial supply.
+    /// @param totalSupply_ Total token supply in the smallest unit (wei).
     constructor(address recipient, uint256 totalSupply_)
-        ERC20("My Token", "MTK")
-        ERC20Permit("My Token")
+        ERC20("Middle East E-Commerce", "MEEC")
+        ERC20Permit("Middle East E-Commerce")
     {
         _mint(recipient, totalSupply_);
     }

@@ -16,20 +16,20 @@ async function main() {
   const totalSupply = BigInt(rawSupply);
 
   console.log(
-    "Deploying MyToken — recipient:",
+    "Deploying MEECToken — recipient:",
     recipient,
     "| supply:",
     hre.ethers.formatUnits(totalSupply, 18),
     "tokens"
   );
 
-  const MyToken = await hre.ethers.getContractFactory("MyToken");
-  const token = await MyToken.deploy(recipient, totalSupply);
+  const MEECToken = await hre.ethers.getContractFactory("MEECToken");
+  const token = await MEECToken.deploy(recipient, totalSupply);
 
   // Wait for deployment transaction to be mined
   await token.waitForDeployment();
   const address = await token.getAddress();
-  console.log("MyToken deployed to:", address);
+  console.log("MEECToken deployed to:", address);
 
   // Wait for extra confirmations before attempting Etherscan verification
   // (Etherscan needs time to index the contract)
@@ -62,7 +62,7 @@ async function main() {
   console.log("  Network  :", hre.network.name);
   console.log("  Address  :", address);
   console.log("  Recipient:", recipient);
-  console.log("  Supply   :", hre.ethers.formatUnits(totalSupply, 18), "MTK");
+  console.log("  Supply   :", hre.ethers.formatUnits(totalSupply, 18), "MEEC");
 }
 
 main().catch((error) => {

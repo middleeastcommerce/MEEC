@@ -1,11 +1,11 @@
-# ERC-20 Token — Requirements Specification
+# Middle East E-Commerce (MEEC) Token — Requirements Specification
 
 ## 1. Token Metadata
 
 | Parameter | Value | Rationale |
 |---|---|---|
-| Name | To be defined by owner | Human-readable identifier shown on explorers and exchanges |
-| Symbol | To be defined by owner | Ticker used for trading (e.g., ETH, USDC) |
+| Name | Middle East E-Commerce | Human-readable identifier shown on explorers and exchanges |
+| Symbol | MEEC | Ticker used for trading |
 | Decimals | 18 | Ethereum standard; matches ETH and most ERC-20s; enables fractional amounts |
 | Initial Supply | Configurable at deploy time | All tokens minted at construction to the deployer address; no future minting |
 | Max Supply | Equal to initial supply (fixed) | Supply is immutable; no mechanism to create additional tokens |

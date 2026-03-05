@@ -1,4 +1,4 @@
-# ERC-20 Token
+# Middle East E-Commerce (MEEC) Token
 
 A minimal, immutable ERC-20 token designed to pass token security scanners
 (Token Sniffer, DexScreener, GoPlus, Honeypot.is) with a green / safe rating.
@@ -26,7 +26,7 @@ A minimal, immutable ERC-20 token designed to pass token security scanners
 
 ```
 contracts/
-  MyToken.sol          Main ERC-20 contract
+  MEECToken.sol        Main ERC-20 contract
 scripts/
   deploy.js            Deploy + auto-verify on Etherscan
   verify.js            Standalone Etherscan verification
@@ -96,7 +96,7 @@ CONTRACT_ADDRESS=0x... npm run verify:mainnet
 ## Deployment
 
 The deploy script automatically:
-1. Deploys `MyToken` with the configured supply to your deployer address
+1. Deploys `MEECToken` with the configured supply to your deployer address
 2. Waits for 5 block confirmations
 3. Verifies the source code on Etherscan
 
@@ -128,7 +128,7 @@ After deploying and verifying:
 
 ## Tech Stack
 
-- Solidity ^0.8.20
+- Solidity 0.8.20
 - Hardhat 2.x
 - OpenZeppelin Contracts v5
 - ethers.js v6

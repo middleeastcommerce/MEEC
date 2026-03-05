@@ -28,7 +28,7 @@ async function getPermitSignature(signer, token, spender, value, deadline) {
   return ethers.Signature.from(signature);
 }
 
-describe("MyToken", function () {
+describe("MEECToken", function () {
   const TOTAL_SUPPLY = ethers.parseUnits("1000000", 18); // 1,000,000 tokens
 
   let token;
@@ -37,8 +37,8 @@ describe("MyToken", function () {
   beforeEach(async function () {
     [deployer, alice, bob] = await ethers.getSigners();
 
-    const MyToken = await ethers.getContractFactory("MyToken");
-    token = await MyToken.deploy(deployer.address, TOTAL_SUPPLY);
+    const MEECToken = await ethers.getContractFactory("MEECToken");
+    token = await MEECToken.deploy(deployer.address, TOTAL_SUPPLY);
     await token.waitForDeployment();
   });
 
@@ -46,11 +46,11 @@ describe("MyToken", function () {
 
   describe("Deployment", function () {
     it("has the correct name", async function () {
-      expect(await token.name()).to.equal("My Token");
+      expect(await token.name()).to.equal("Middle East E-Commerce");
     });
 
     it("has the correct symbol", async function () {
-      expect(await token.symbol()).to.equal("MTK");
+      expect(await token.symbol()).to.equal("MEEC");
     });
 
     it("has 18 decimals", async function () {
