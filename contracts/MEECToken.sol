@@ -2,7 +2,6 @@
 pragma solidity 0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 /**
@@ -16,16 +15,16 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
  *  - All supply is fixed at construction and sent to `recipient`.
  *
  * Extensions included:
- *  - ERC20Burnable : holders can burn their own tokens (holder-controlled only)
  *  - ERC20Permit   : gasless approvals via EIP-2612 off-chain signatures
  *
  * Extensions deliberately excluded:
  *  - Ownable / AccessControl : no admin keys
  *  - ERC20Capped / mint      : no post-deployment minting
  *  - ERC20Pausable           : no ability to freeze transfers
+ *  - ERC20Burnable           : no token burning of any kind
  *  - Proxy / upgradeable     : contract logic is immutable
  */
-contract MEECToken is ERC20, ERC20Burnable, ERC20Permit {
+contract MEECToken is ERC20, ERC20Permit {
 
     /// @notice Deploys the MEEC token and mints the entire supply to `recipient`.
     /// @param recipient    Address that receives the entire initial supply.

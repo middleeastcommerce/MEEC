@@ -11,8 +11,8 @@ async function main() {
   // All tokens go to the deployer address on deployment
   const recipient = deployer.address;
 
-  // Read supply from .env or fall back to 1,000,000 tokens (18 decimals)
-  const rawSupply = process.env.INITIAL_SUPPLY || "1000000000000000000000000";
+  // Read supply from .env or fall back to 100,000,000,000 tokens (18 decimals)
+  const rawSupply = process.env.INITIAL_SUPPLY || "100000000000000000000000000000";
   const totalSupply = BigInt(rawSupply);
 
   console.log(

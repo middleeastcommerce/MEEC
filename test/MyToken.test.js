@@ -29,7 +29,7 @@ async function getPermitSignature(signer, token, spender, value, deadline) {
 }
 
 describe("MEECToken", function () {
-  const TOTAL_SUPPLY = ethers.parseUnits("1000000", 18); // 1,000,000 tokens
+  const TOTAL_SUPPLY = ethers.parseUnits("100000000000", 18); // 100,000,000,000 tokens (100B)
 
   let token;
   let deployer, alice, bob;
@@ -126,42 +126,6 @@ describe("MEECToken", function () {
     });
   });
 
-  // ─── Burning ─────────────────────────────────────────────────────────────────
-
-  describe("Burning", function () {
-    it("allows a holder to burn their own tokens", async function () {
-      const burnAmount = ethers.parseUnits("10000", 18);
-      await token.burn(burnAmount);
-      expect(await token.totalSupply()).to.equal(TOTAL_SUPPLY - burnAmount);
-      expect(await token.balanceOf(deployer.address)).to.equal(TOTAL_SUPPLY - burnAmount);
-    });
-
-    it("emits Transfer event to zero address on burn", async function () {
-      const burnAmount = ethers.parseUnits("1", 18);
-      await expect(token.burn(burnAmount))
-        .to.emit(token, "Transfer")
-        .withArgs(deployer.address, ethers.ZeroAddress, burnAmount);
-    });
-
-    it("allows burnFrom with a valid allowance", async function () {
-      const burnAmount = ethers.parseUnits("500", 18);
-      await token.approve(alice.address, burnAmount);
-      await token.connect(alice).burnFrom(deployer.address, burnAmount);
-      expect(await token.totalSupply()).to.equal(TOTAL_SUPPLY - burnAmount);
-    });
-
-    it("reverts burnFrom when allowance is insufficient", async function () {
-      await expect(
-        token.connect(alice).burnFrom(deployer.address, 1n)
-      ).to.be.reverted;
-    });
-
-    it("reverts burn when balance is insufficient", async function () {
-      const tooMuch = TOTAL_SUPPLY + 1n;
-      await expect(token.burn(tooMuch)).to.be.reverted;
-    });
-  });
-
   // ─── EIP-2612 Permit ─────────────────────────────────────────────────────────
 
   describe("Permit (EIP-2612)", function () {
@@ -232,9 +196,12 @@ describe("MEECToken", function () {
       expect(token.blacklist).to.be.undefined;
     });
 
-    it("total supply never increases after deployment", async function () {
+    it("has no burn() function", function () {
+      expect(token.burn).to.be.undefined;
+    });
+
+    it("total supply never changes after deployment", async function () {
       const supplyBefore = await token.totalSupply();
-      // The only way supply changes is via burn — let's confirm supply stays same without burn
       await token.transfer(alice.address, 1n);
       expect(await token.totalSupply()).to.equal(supplyBefore);
     });

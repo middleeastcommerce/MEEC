@@ -7,7 +7,7 @@
 | Name | Middle East E-Commerce | Human-readable identifier shown on explorers and exchanges |
 | Symbol | MEEC | Ticker used for trading |
 | Decimals | 18 | Ethereum standard; matches ETH and most ERC-20s; enables fractional amounts |
-| Initial Supply | Configurable at deploy time | All tokens minted at construction to the deployer address; no future minting |
+| Initial Supply | 100,000,000,000 MEEC (100 Billion) | All tokens minted at construction to the deployer address; no future minting |
 | Max Supply | Equal to initial supply (fixed) | Supply is immutable; no mechanism to create additional tokens |
 
 ---
@@ -19,10 +19,6 @@
 #### Standard ERC-20 (OpenZeppelin `ERC20`)
 - **What:** `transfer`, `transferFrom`, `approve`, `allowance`, `balanceOf`, `totalSupply`
 - **Why:** Required for ERC-20 compliance. Enables wallets, DEXs, and CEXs to list and trade the token without any special integration.
-
-#### Burnable (`ERC20Burnable`)
-- **What:** Any holder can call `burn(amount)` or `burnFrom(address, amount)` to permanently destroy tokens they own.
-- **Why:** Holder-controlled only — no admin can burn other users' tokens. Token scanners treat this as neutral to positive. Reduces circulating supply over time if holders choose to burn.
 
 #### Gasless Approvals — EIP-2612 (`ERC20Permit`)
 - **What:** Holders can approve a spender via an off-chain signature rather than an on-chain transaction. The spender then calls `permit(...)` and `transferFrom` in a single transaction.
@@ -44,6 +40,9 @@
 
 #### Fee-on-transfer (tax)
 - **Excluded because:** Hidden fees cause unexpected loss for buyers. DexScreener and others flag fee-on-transfer tokens. Standard ERC-20 behavior — no fees on any transfer.
+
+#### Burn (`ERC20Burnable`)
+- **Excluded because:** Token supply must remain fixed at 100 Billion. No burning of any kind is permitted — not by holders, not by anyone.
 
 #### Proxy / Upgradeable pattern
 - **Excluded because:** An upgradeable contract can have its logic replaced post-deployment, which defeats the purpose of immutability. Scanners flag proxy patterns as HIGH risk.
@@ -92,4 +91,4 @@ These steps are outside the smart contract but are critical for achieving a gree
 - **Branch coverage:** 100%
 - **Function coverage:** 100%
 
-All ERC-20 standard functions, burn paths, and permit signature flows must be covered by automated tests before mainnet deployment.
+All ERC-20 standard functions and permit signature flows must be covered by automated tests before mainnet deployment.
