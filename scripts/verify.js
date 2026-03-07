@@ -9,17 +9,13 @@ const hre = require("hardhat");
  *
  * Environment variables required:
  *   CONTRACT_ADDRESS  — the deployed contract address
- *   INITIAL_SUPPLY    — same value used during deploy (in wei)
- *   RECIPIENT         — address passed as first constructor arg (defaults to deployer)
+ *   RECIPIENT         — address passed as constructor arg (defaults to deployer)
  */
 async function main() {
   const address = process.env.CONTRACT_ADDRESS;
   if (!address) {
     throw new Error("Set CONTRACT_ADDRESS environment variable to the deployed contract address.");
   }
-
-  const rawSupply = process.env.INITIAL_SUPPLY || "1000000000000000000000000";
-  const totalSupply = BigInt(rawSupply);
 
   let recipient = process.env.RECIPIENT;
   if (!recipient) {
@@ -29,12 +25,12 @@ async function main() {
   }
 
   console.log("Verifying contract at:", address);
-  console.log("  recipient   :", recipient);
-  console.log("  totalSupply :", hre.ethers.formatUnits(totalSupply, 18), "tokens");
+  console.log("  recipient:", recipient);
+  console.log("  supply   : 100,000,000,000 MEEC (hardcoded in contract)");
 
   await hre.run("verify:verify", {
     address: address,
-    constructorArguments: [recipient, totalSupply],
+    constructorArguments: [recipient],
   });
 
   console.log("Verification complete.");

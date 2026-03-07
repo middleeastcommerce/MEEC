@@ -11,20 +11,10 @@ async function main() {
   // All tokens go to the deployer address on deployment
   const recipient = deployer.address;
 
-  // Read supply from .env or fall back to 100,000,000,000 tokens (18 decimals)
-  const rawSupply = process.env.INITIAL_SUPPLY || "100000000000000000000000000000";
-  const totalSupply = BigInt(rawSupply);
-
-  console.log(
-    "Deploying MEECToken — recipient:",
-    recipient,
-    "| supply:",
-    hre.ethers.formatUnits(totalSupply, 18),
-    "tokens"
-  );
+  console.log("Deploying MEECToken — recipient:", recipient, "| supply: 100,000,000,000 MEEC (hardcoded in contract)");
 
   const MEECToken = await hre.ethers.getContractFactory("MEECToken");
-  const token = await MEECToken.deploy(recipient, totalSupply);
+  const token = await MEECToken.deploy(recipient);
 
   // Wait for deployment transaction to be mined
   await token.waitForDeployment();
@@ -42,7 +32,7 @@ async function main() {
     try {
       await hre.run("verify:verify", {
         address: address,
-        constructorArguments: [recipient, totalSupply],
+        constructorArguments: [recipient],
       });
       console.log("Verification successful.");
     } catch (err) {
@@ -52,7 +42,7 @@ async function main() {
         console.error("Verification failed:", err.message);
         console.log(
           "Manual verification command:\n",
-          `npx hardhat verify --network ${hre.network.name} ${address} ${recipient} ${totalSupply}`
+          `npx hardhat verify --network ${hre.network.name} ${address} ${recipient}`
         );
       }
     }
@@ -62,7 +52,7 @@ async function main() {
   console.log("  Network  :", hre.network.name);
   console.log("  Address  :", address);
   console.log("  Recipient:", recipient);
-  console.log("  Supply   :", hre.ethers.formatUnits(totalSupply, 18), "MEEC");
+  console.log("  Supply   : 100,000,000,000 MEEC (hardcoded in contract)");
 }
 
 main().catch((error) => {

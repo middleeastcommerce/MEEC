@@ -29,7 +29,8 @@ async function getPermitSignature(signer, token, spender, value, deadline) {
 }
 
 describe("MEECToken", function () {
-  const TOTAL_SUPPLY = ethers.parseUnits("100000000000", 18); // 100,000,000,000 tokens (100B)
+  // 100 Billion tokens — matches the TOTAL_SUPPLY constant hardcoded in the contract
+  const TOTAL_SUPPLY = 100_000_000_000n * 10n ** 18n;
 
   let token;
   let deployer, alice, bob;
@@ -38,7 +39,7 @@ describe("MEECToken", function () {
     [deployer, alice, bob] = await ethers.getSigners();
 
     const MEECToken = await ethers.getContractFactory("MEECToken");
-    token = await MEECToken.deploy(deployer.address, TOTAL_SUPPLY);
+    token = await MEECToken.deploy(deployer.address);
     await token.waitForDeployment();
   });
 
@@ -200,10 +201,21 @@ describe("MEECToken", function () {
       expect(token.burn).to.be.undefined;
     });
 
+    it("TOTAL_SUPPLY constant is 100 Billion tokens", async function () {
+      expect(await token.TOTAL_SUPPLY()).to.equal(TOTAL_SUPPLY);
+    });
+
     it("total supply never changes after deployment", async function () {
       const supplyBefore = await token.totalSupply();
       await token.transfer(alice.address, 1n);
       expect(await token.totalSupply()).to.equal(supplyBefore);
+    });
+
+    it("reverts deployment if recipient is zero address", async function () {
+      const MEECToken = await ethers.getContractFactory("MEECToken");
+      await expect(MEECToken.deploy(ethers.ZeroAddress)).to.be.revertedWith(
+        "MEEC: mint to zero address"
+      );
     });
   });
 });

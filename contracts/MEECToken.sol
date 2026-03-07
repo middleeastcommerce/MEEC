@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 /**
- * @title MEECToken
+ * @title  Middle East E-Commerce (MEEC)
  * @notice Middle East E-Commerce (MEEC) ERC-20 token.
  *
  * Design goals:
@@ -15,7 +15,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
  *  - All supply is fixed at construction and sent to `recipient`.
  *
  * Extensions included:
- *  - ERC20Permit   : gasless approvals via EIP-2612 off-chain signatures
+ *  - ERC20Permit : gasless approvals via EIP-2612 off-chain signatures
  *
  * Extensions deliberately excluded:
  *  - Ownable / AccessControl : no admin keys
@@ -26,13 +26,20 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
  */
 contract MEECToken is ERC20, ERC20Permit {
 
+    /// @notice The fixed total supply: 100 Billion MEEC in wei.
+    uint256 public constant TOTAL_SUPPLY = 100_000_000_000 * 10 ** 18;
+
     /// @notice Deploys the MEEC token and mints the entire supply to `recipient`.
-    /// @param recipient    Address that receives the entire initial supply.
-    /// @param totalSupply_ Total token supply in the smallest unit (wei).
-    constructor(address recipient, uint256 totalSupply_)
+    /// @dev    Supply is hardcoded to TOTAL_SUPPLY — it cannot be changed after deployment.
+    ///         No mint or burn function exists. The contract has no owner after construction.
+    ///         Reverts if `recipient` is the zero address.
+    /// @param recipient Address that receives the entire initial supply.
+    ///                  Must not be the zero address.
+    constructor(address recipient)
         ERC20("Middle East E-Commerce", "MEEC")
         ERC20Permit("Middle East E-Commerce")
     {
-        _mint(recipient, totalSupply_);
+        require(recipient != address(0), "MEEC: mint to zero address");
+        _mint(recipient, TOTAL_SUPPLY);
     }
 }
