@@ -292,6 +292,3 @@ Any roadmap statements, growth expectations, or future ecosystem plans are forwa
 - Contract: `0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20`
 - Etherscan: `https://etherscan.io/token/0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20`
 
-## Publication Note
-
-This document is suitable as a formal draft whitepaper. Before publishing an official PDF, the project should perform a final fact check across token allocation, liquidity references, vesting details, public links, and team information.
