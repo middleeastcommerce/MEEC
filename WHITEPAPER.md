@@ -291,4 +291,4 @@ Any roadmap statements, growth expectations, or future ecosystem plans are forwa
 - Website: `https://www.middleeastcommerce.net`
 - Contract: `0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20`
 - Etherscan: `https://etherscan.io/token/0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20`
-
+- Contact: `info@middleeastcommerce.net`

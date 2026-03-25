@@ -11,6 +11,7 @@ It is designed to enable fast, transparent, and secure transactions across e-com
 * **Website:** [middleeastcommerce.net](https://www.middleeastcommerce.net)
 * **Smart Contract (Ethereum):** `0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20`
 * **Etherscan:** [View Token on Etherscan](https://etherscan.io/token/0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20)
+* **Contact:** `info@middleeastcommerce.net`
 
 ---
 
