@@ -1,0 +1,27 @@
+{
+  "name": "MEEC Token List",
+  "timestamp": "2026-03-26T00:00:00Z",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "keywords": [
+    "meec",
+    "middle-east-commerce",
+    "ethereum",
+    "erc20"
+  ],
+  "tags": {},
+  "logoURI": "https://raw.githubusercontent.com/middleeastcommerce/MEEC/main/trustwallet-submission/blockchains/ethereum/assets/0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20/logo.png",
+  "tokens": [
+    {
+      "chainId": 1,
+      "address": "0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20",
+      "name": "Middle East E-Commerce",
+      "symbol": "MEEC",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/middleeastcommerce/MEEC/main/trustwallet-submission/blockchains/ethereum/assets/0xeD940743AFC221EAb5D0B8c2bC9a47E0664D1A20/logo.png"
+    }
+  ]
+}
