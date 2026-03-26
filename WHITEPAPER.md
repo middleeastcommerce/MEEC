@@ -142,6 +142,14 @@ The repository materials also reference the following public items:
 
 These references help explain the intended distribution controls around liquidity and staged release. However, current holders, reviewers, and exchange partners should verify the latest on-chain status directly through public blockchain records and official project channels.
 
+Based on the project's published allocation references, the vesting release schedule is described as `1.6 billion MEEC` every 6 months over 5 years from pre-allocated vested tokens. According to management guidance reflected in project materials, each 6-month release is intended to be allocated as follows:
+
+- `1,000,000,000 MEEC` for centralized exchange listings
+- `400,000,000 MEEC` for marketing and advertising
+- `200,000,000 MEEC` for development
+
+These scheduled releases should be understood as allocations from already issued and pre-allocated token reserves under vesting controls, not as new token minting after deployment.
+
 ### 6.5 Recommended Final Disclosure Format
 
 For the strongest public-facing version of this whitepaper, the tokenomics section should ultimately be presented in this format:
